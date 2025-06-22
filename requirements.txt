@@ -1,0 +1,15 @@
+sentence-transformers
+faiss-cpu
+neo4j
+python-dotenv
+ollama
+pyvis
+streamlit
+fastapi
+uvicorn
+networkx
+scikit-learn
+torch
+numpy
+pydantic
+requests 
