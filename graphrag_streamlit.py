@@ -35,11 +35,12 @@ def build_knowledge_graph_from_data(file_path='data.txt'):
     with driver.session() as session:
         session.run("MATCH (n) DETACH DELETE n")  # Clear old graph
         for subj, rel, obj in triples:
+            rel_clean = re.sub(r'\W+', '_', rel.upper())
             session.run(
                 f"""
                 MERGE (a:Entity {{name: $subj}})
                 MERGE (b:Entity {{name: $obj}})
-                MERGE (a)-[r:{re.sub(r'\\W+', '_', rel.upper())}]->(b)
+                MERGE (a)-[r:{rel_clean}]->(b)
                 """,
                 {"subj": subj, "obj": obj}
             )
